@@ -1,0 +1,328 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Sistem Bimbel PAA",
+    "version": "1.0.0",
+    "description": "Dokumentasi Lengkap API LKM 1 - Project Manajemen Bimbel"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Development Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Registrasi User Baru (Murid/Tentor)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nama": {
+                    "type": "string",
+                    "example": "Tunggul Abdul Majid"
+                  },
+                  "tanggal_lahir": {
+                    "type": "string",
+                    "example": "2006-04-01"
+                  },
+                  "email": { "type": "string", "example": "tunggul@gmail.com" },
+                  "alamat": { "type": "string", "example": "Banyuwangi" },
+                  "password": { "type": "string", "example": "password123" },
+                  "role": {
+                    "type": "string",
+                    "enum": ["murid", "tentor"],
+                    "example": "murid"
+                  },
+                  "detail_info": {
+                    "type": "object",
+                    "properties": {
+                      "asal_sekolah": {
+                        "type": "string",
+                        "example": "SMAN 1 Jember"
+                      },
+                      "pendidikan_terakhir": {
+                        "type": "string",
+                        "example": "S1"
+                      },
+                      "jurusan": {
+                        "type": "string",
+                        "example": "Teknologi Informasi"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "User Berhasil Dibuat" } }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Login User",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "example": "tunggul@gmail.com" },
+                  "password": { "type": "string", "example": "password123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login Berhasil, Token Diberikan" }
+        }
+      }
+    },
+    "/api/users/murid": {
+      "get": {
+        "tags": ["Profil - Murid"],
+        "summary": "Ambil Semua Data Murid",
+        "security": [{ "bearerAuth": [] }],
+        "responses": { "200": { "description": "Berhasil" } }
+      }
+    },
+    "/api/users/murid/{id}": {
+      "put": {
+        "tags": ["Profil - Murid"],
+        "summary": "Update Data Murid",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "asal_sekolah": {
+                    "type": "string",
+                    "example": "SMAN 2 Jember"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Update Berhasil" } }
+      },
+      "delete": {
+        "tags": ["Profil - Murid"],
+        "summary": "Hapus Murid Secara Permanen",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": { "200": { "description": "Berhasil Dihapus" } }
+      }
+    },
+    "/api/users/tentor": {
+      "get": {
+        "tags": ["Profil - Tentor"],
+        "summary": "Ambil Semua Data Tentor",
+        "security": [{ "bearerAuth": [] }],
+        "responses": { "200": { "description": "Berhasil" } }
+      }
+    },
+    "/api/users/tentor/{id}": {
+      "put": {
+        "tags": ["Profil - Tentor"],
+        "summary": "Update Data Tentor",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pendidikan_terakhir": { "type": "string", "example": "S2" },
+                  "jurusan": {
+                    "type": "string",
+                    "example": "Magister Informatika"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Update Berhasil" } }
+      },
+      "delete": {
+        "tags": ["Profil - Tentor"],
+        "summary": "Soft Delete Tentor",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": { "200": { "description": "Berhasil di-archived" } }
+      }
+    },
+    "/api/kelas": {
+      "get": {
+        "tags": ["Manajemen Kelas"],
+        "summary": "Tampilkan Semua Kelas",
+        "responses": { "200": { "description": "Berhasil" } }
+      },
+      "post": {
+        "tags": ["Manajemen Kelas"],
+        "summary": "Buat Kelas Baru",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_tentor": { "type": "integer", "example": 1 },
+                  "nama_kelas": {
+                    "type": "string",
+                    "example": "Belajar Node.js Eksklusif"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Kelas Dibuat" } }
+      }
+    },
+    "/api/kelas/{id}": {
+      "put": {
+        "tags": ["Manajemen Kelas"],
+        "summary": "Update Info Kelas",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nama_kelas": {
+                    "type": "string",
+                    "example": "Web Backend Expert"
+                  },
+                  "is_aktif": { "type": "boolean", "example": true }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Berhasil" } }
+      }
+    },
+    "/api/kelas/enroll": {
+      "post": {
+        "tags": ["Enrollment"],
+        "summary": "Daftarkan Murid ke Kelas (Many-to-Many)",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_kelas": { "type": "integer", "example": 1 },
+                  "id_murid": { "type": "integer", "example": 1 }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Berhasil Terdaftar" } }
+      }
+    },
+    "/api/kelas/unenroll": {
+      "delete": {
+        "tags": ["Enrollment"],
+        "summary": "Keluarkan Murid dari Kelas",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_kelas": { "type": "integer", "example": 1 },
+                  "id_murid": { "type": "integer", "example": 1 }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Berhasil Keluar" } }
+      }
+    },
+    "/api/kelas/{id}/anggota": {
+      "get": {
+        "tags": ["Enrollment"],
+        "summary": "Lihat Siapa Saja Murid di Kelas Ini",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": { "200": { "description": "Berhasil Ambil Data Anggota" } }
+      }
+    }
+  }
+}
