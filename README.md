@@ -101,9 +101,10 @@ Seluruh endpoint telah terdokumentasi dan dapat diuji langsung melalui browser:
 - **Soft Delete**: Mekanisme penonaktifan tentor tanpa menghapus record dari database.
 - **Many-to-Many Relationship**: Implementasi tabel penghubung untuk relasi antara Murid dan Kelas.
 
-## 👤 Identitas Pengembang
+## 👤 Identitas 
 - **Nama**: Tunggul Abdul Majid
-- **NIM**: 24241010xxxx
+- **NIM**: 242410102058
 - **Program Studi**: Teknologi Informasi
 - **Instansi**: Universitas Jember
 - **Tugas**: LKM 1 Pemrograman Aplikasi Antarmuka (PAA)
+- Link Presentasi : 
