@@ -3,24 +3,30 @@
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 
 Proyek ini adalah **Backend API** untuk sistem manajemen bimbingan belajar yang mencakup manajemen user (Murid & Tentor), pengelolaan kelas, dan sistem pendaftaran (Enrollment). Dikembangkan untuk memenuhi tugas **LKM 1 Pemrograman Aplikasi Antarmuka (PAA)**.
 
-## 📂 Struktur Proyek
+## 🌐 Live Demo
+Aplikasi telah di-hosting secara publik dan dapat diakses melalui tautan berikut:
+* **API Base URL**: `https://express-paa-84nz.vercel.app/`
+* **Dokumentasi Swagger**: `https://express-paa-84nz.vercel.app/api-docs/`
 
+---
+
+## 📂 Struktur Proyek
 ```text
 ├── src/
-│   ├── config/      # Pengaturan koneksi database PostgreSQL (pg library)
+│   ├── config/      # Pengaturan koneksi database (Cloud Supabase)
 │   ├── controller/  # Logika bisnis utama (Auth, Kelas, Profil)
 │   ├── middleware/  # Filter keamanan (JWT) & Logger aktivitas
 │   ├── models/      # Layer abstraksi data (Query SQL mentah)
 │   ├── routes/      # Definisi endpoint API
-│   └── index.js     # Entry point utama aplikasi
-├── swaggerConfig.json # Konfigurasi dokumentasi API Swagger UI
-├── db.sql             # Skema tabel dan data dummy
-└── .env               # File konfigurasi environment (tidak di-upload)
-```
+│   └── index.js     # Entry point utama & Vercel Handler
+├── swaggerConfig.json # Konfigurasi dokumentasi API
+├── db.sql             # Skema tabel & insert 14 data dummy
+└── vercel.json        # Konfigurasi deployment Vercel
 
 ## 🛠️ Persiapan & Instalasi
 
