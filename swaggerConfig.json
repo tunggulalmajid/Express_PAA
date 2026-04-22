@@ -9,6 +9,10 @@
     {
       "url": "https://express-paa-84nz.vercel.app/",
       "description": "Production Server"
+    },
+    {
+      "url": "http://localhost:3000/",
+      "description": "Development Server"
     }
   ],
   "components": {

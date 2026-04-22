@@ -8,15 +8,24 @@
 
 Proyek ini adalah **Backend API** untuk sistem manajemen bimbingan belajar yang mencakup manajemen user (Murid & Tentor), pengelolaan kelas, dan sistem pendaftaran (Enrollment). Dikembangkan untuk memenuhi tugas **LKM 1 Pemrograman Aplikasi Antarmuka (PAA)**.
 
-## 🌐 Live Demo
-Aplikasi telah di-hosting secara publik dan dapat diakses melalui tautan berikut:
-* **API Base URL**: `https://express-paa-84nz.vercel.app/`
-* **Dokumentasi Swagger**: `https://express-paa-84nz.vercel.app/api-docs/`
+## 🌐 Quick Access (Dokumentasi API)
+
+Aplikasi menyediakan dokumentasi interaktif melalui Swagger UI untuk memudahkan pengujian endpoint:
+
+| Environment     | URL Dokumentasi                                                                                | Status        |
+| :-------------- | :--------------------------------------------------------------------------------------------- | :------------ |
+| **Production**  | [https://express-paa-84nz.vercel.app/api-docs/](https://express-paa-84nz.vercel.app/api-docs/) | 🚀 Online     |
+| **Development** | [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/)                             | 💻 Local Only |
+
+> **Catatan**: Untuk mencoba fitur di Production, pastikan Anda memilih server "Production" pada dropdown di halaman Swagger.
+
+---
 
 ---
 
 ## 📂 Struktur Proyek
-```text
+
+````text
 ├── src/
 │   ├── config/      # Pengaturan koneksi database (Cloud Supabase)
 │   ├── controller/  # Logika bisnis utama (Auth, Kelas, Profil)
@@ -35,7 +44,7 @@ Aplikasi telah di-hosting secara publik dan dapat diakses melalui tautan berikut
 ```bash
 git clone https://github.com/username-kamu/Express_PAA.git
 cd Express_PAA
-```
+````
 
 ### 2. Install Dependensi
 
