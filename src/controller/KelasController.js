@@ -95,7 +95,7 @@ exports.unenroll = async (req, res) => {
 exports.getAnggota = async (req, res) => {
   try {
     const result = await Detail.getMembers(req.params.id);
-    if (result.rows.length) {
+    if (result.rows.length > 0) {
       res.json({ status: "success", data: result.rows });
     } else {
       res

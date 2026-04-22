@@ -48,9 +48,10 @@ const Profil = {
     ),
 
   softDeleteTutor: (id) =>
-    db.query("UPDATE tentors SET deleted_at = NOW() WHERE id_tentor = $1", [
-      id,
-    ]),
+    db.query(
+      "UPDATE tentors SET deleted_at = NOW() WHERE id_tentor = $1 RETURNING *",
+      [id],
+    ),
 
   deleteStudent: (id) =>
     db.query("DELETE FROM murids where id_murid = $1 RETURNING *", [id]),

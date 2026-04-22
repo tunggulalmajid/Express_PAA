@@ -15,6 +15,7 @@ const DetailKelas = {
         JOIN users u ON m.id_user = u.id_user WHERE dk.id_kelas = $1`,
       [id_k],
     ),
+
   unenroll: (id_k, id_m) =>
     db.query(
       "DELETE FROM detail_kelas WHERE id_kelas = $1 AND id_murid = $2 RETURNING *",
