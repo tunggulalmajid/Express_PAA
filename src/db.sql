@@ -49,6 +49,9 @@ CREATE TABLE detail_kelas (
     CONSTRAINT fk_kelas_detail FOREIGN KEY(id_kelas) REFERENCES kelas(id_kelas) ON DELETE CASCADE
 );
 
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_kelas_tentor ON kelas(id_tentor);
+
 INSERT INTO users (nama, tanggal_lahir, email, alamat, password, role) VALUES
 
 ('Tunggul Abdul Majid', '2006-04-01', 'tunggul@gmail.com', 'Banyuwangi', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'tentor'),
@@ -102,3 +105,4 @@ INSERT INTO detail_kelas (id_kelas, id_murid) VALUES
 (3, 3), (3, 4), (3, 7), (3, 8),
 
 (4, 1), (4, 2), (4, 5);
+
