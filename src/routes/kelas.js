@@ -2,7 +2,6 @@ const router = require("express").Router();
 const kelasCtrl = require("../controller/KelasController");
 const auth = require("../middleware/auth");
 
-// Pastikan kelasCtrl.getAll (bukan getAllKelas)
 router.get("/", kelasCtrl.getAll);
 router.get("/:id", auth, kelasCtrl.getById);
 router.post("/", auth, kelasCtrl.store);
