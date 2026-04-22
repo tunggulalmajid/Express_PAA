@@ -6,14 +6,11 @@ require("dotenv").config();
 
 const app = express();
 
-// 1. Load Swagger Config
 const swaggerDocument = require(path.join(__dirname, "../swaggerConfig.json"));
 
-// 2. Middleware Dasar
 app.use(express.json());
 app.use(logRequest);
 
-// 3. Link CDN Stabil (Swagger UI 4.15.5)
 const CSS_URL =
   "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css";
 const JS_URL =
@@ -21,7 +18,6 @@ const JS_URL =
 const PRESET_URL =
   "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.js";
 
-// 4. Fix Content Security Policy (Agar Browser tidak memblokir CDN)
 app.use("/api-docs", (req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
@@ -30,7 +26,6 @@ app.use("/api-docs", (req, res, next) => {
   next();
 });
 
-// 5. Setup Swagger UI dengan Aset Eksternal
 app.use(
   "/api-docs",
   swaggerUi.serve,
@@ -41,12 +36,10 @@ app.use(
   }),
 );
 
-// 6. Routing API
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/Users"));
 app.use("/api/kelas", require("./routes/kelas"));
 
-// 7. Landing Page Sederhana
 app.get("/", (req, res) => {
   res.status(200).json({
     status: "Success",
@@ -57,7 +50,6 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-// 8. Listen (Hanya di Lokal)
 if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => {
     console.log(`================================================`);
@@ -67,5 +59,4 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-// 9. Export untuk Vercel
 module.exports = app;
