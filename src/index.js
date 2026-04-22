@@ -11,7 +11,16 @@ const app = express();
 app.use(express.json());
 app.use(logRequest);
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/public", express.static(path.join(__dirname, "../public")));
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, {
+    customCssUrl: "/public/swagger-ui.css",
+    customJs: "/public/swagger-ui-bundle.js",
+  }),
+);
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/Users"));

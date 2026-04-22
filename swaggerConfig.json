@@ -8,7 +8,7 @@
   "servers": [
     {
       "url": "https://express-paa-84nz.vercel.app/",
-      "description": "Local Development Server"
+      "description": "Production Server"
     }
   ],
   "components": {
