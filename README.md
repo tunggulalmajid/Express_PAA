@@ -140,4 +140,4 @@ Seluruh endpoint telah terdokumentasi dan dapat diuji langsung melalui browser:
 - **Program Studi**: Teknologi Informasi
 - **Instansi**: Universitas Jember
 - **Tugas**: LKM 1 Pemrograman Aplikasi Antarmuka (PAA)
-- Link Presentasi :
+- Link Presentasi : https://www.youtube.com/watch?v=9FanvKiTeW8
