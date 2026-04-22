@@ -9,7 +9,6 @@ exports.register = async (req, res) => {
       req.body;
     const hash = await bcrypt.hash(password, 10);
 
-    // Simpan data user utama
     const id_user = await User.create({
       nama,
       tanggal_lahir,
@@ -19,7 +18,6 @@ exports.register = async (req, res) => {
       role,
     });
 
-    // Simpan data profil spesifik berdasarkan role
     if (role === "murid") {
       await Profil.createStudent(id_user, detail_info.asal_sekolah);
     } else if (role === "tentor") {

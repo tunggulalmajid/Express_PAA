@@ -105,6 +105,20 @@
       }
     },
     "/api/users/murid/{id}": {
+      "get": {
+        "tags": ["Profil - Murid"],
+        "summary": "Dapatkan data murid berdasarkan id",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": { "200": { "description": "Berhasil Ambil Data Murid" } }
+      },
       "put": {
         "tags": ["Profil - Murid"],
         "summary": "Update Data Murid",
@@ -158,6 +172,20 @@
       }
     },
     "/api/users/tentor/{id}": {
+      "get": {
+        "tags": ["Profil - Tentor"],
+        "summary": "Dapatkan data Tentor berdasarkan id",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": { "200": { "description": "Berhasil Ambil Data Tentor" } }
+      },
       "put": {
         "tags": ["Profil - Tentor"],
         "summary": "Update Data Tentor",
@@ -206,6 +234,7 @@
     "/api/kelas": {
       "get": {
         "tags": ["Manajemen Kelas"],
+        "security": [{ "bearerAuth": [] }],
         "summary": "Tampilkan Semua Kelas",
         "responses": { "200": { "description": "Berhasil" } }
       },
@@ -234,6 +263,20 @@
       }
     },
     "/api/kelas/{id}": {
+      "get": {
+        "tags": ["Manajemen Kelas"],
+        "summary": "Dapatkan data kelas berdasarkan id",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": { "200": { "description": "Berhasil Ambil Data Kelas" } }
+      },
       "put": {
         "tags": ["Manajemen Kelas"],
         "summary": "Update Info Kelas",
@@ -263,6 +306,20 @@
           }
         },
         "responses": { "200": { "description": "Berhasil" } }
+      },
+      "delete": {
+        "tags": ["Manajemen Kelas"],
+        "summary": "Hapus Kelas Secara Permanen",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": { "200": { "description": "Berhasil Dihapus" } }
       }
     },
     "/api/kelas/enroll": {
@@ -312,6 +369,7 @@
     "/api/kelas/{id}/anggota": {
       "get": {
         "tags": ["Enrollment"],
+        "security": [{ "bearerAuth": [] }],
         "summary": "Lihat Siapa Saja Murid di Kelas Ini",
         "parameters": [
           {

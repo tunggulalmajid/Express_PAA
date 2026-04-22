@@ -15,7 +15,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routing
 app.use("/api/auth", require("./routes/auth"));
-app.use("/api/users", require("./routes/users"));
+app.use("/api/users", require("./routes/Users"));
 app.use("/api/kelas", require("./routes/kelas"));
 
 const PORT = process.env.PORT || 3000;

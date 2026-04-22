@@ -10,12 +10,27 @@ exports.getAll = async (req, res) => {
   }
 };
 
+exports.getById = async (req, res) => {
+  try {
+    const result = await Kelas.findById(req.params.id);
+    if (result.rows.length > 0) {
+      res.status(200).json({ status: "success", data: result.rows });
+    } else {
+      res
+        .status(404)
+        .json({ status: "Not Found", message: "Data Tidak Ditemukan" });
+    }
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
+  }
+};
+
 exports.store = async (req, res) => {
   try {
     const result = await Kelas.create(req.body.id_tentor, req.body.nama_kelas);
     res.status(201).json({ status: "success", data: result.rows[0] });
   } catch (err) {
-    res.status(400).json({ status: "error", message: err.message });
+    res.status(500).json({ status: "error", message: err.message });
   }
 };
 
@@ -26,9 +41,30 @@ exports.update = async (req, res) => {
       req.body.nama_kelas,
       req.body.is_aktif,
     );
-    res.json({ status: "success", data: result.rows[0] });
+    if (result.rows.length > 0) {
+      res.json({ status: "success", data: result.rows[0] });
+    } else {
+      res
+        .status(404)
+        .json({ status: "Not Found", message: "Data Tidak Ditemukan" });
+    }
   } catch (err) {
-    res.status(400).json({ status: "error", message: err.message });
+    res.status(500).json({ status: "error", message: err.message });
+  }
+};
+
+exports.delete = async (req, res) => {
+  try {
+    const result = await Kelas.delete(req.params.id);
+    if (result.rows.length > 0) {
+      res.json({ status: "success", message: "Data Kelas Berhasil Terhapus" });
+    } else {
+      res
+        .status(404)
+        .json({ status: "Not Found", message: "Data Tidak Ditemukan" });
+    }
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
   }
 };
 
@@ -43,8 +79,14 @@ exports.enroll = async (req, res) => {
 
 exports.unenroll = async (req, res) => {
   try {
-    await Detail.unenroll(req.body.id_kelas, req.body.id_murid);
-    res.json({ status: "success", message: "Murid keluar kelas" });
+    const result = await Detail.unenroll(req.body.id_kelas, req.body.id_murid);
+    if (result.rows.length > 0) {
+      res.json({ status: "success", message: "Murid keluar kelas" });
+    } else {
+      res
+        .status(404)
+        .json({ status: "Not Found", message: "Data Tidak Ditemukan" });
+    }
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
   }
@@ -53,7 +95,13 @@ exports.unenroll = async (req, res) => {
 exports.getAnggota = async (req, res) => {
   try {
     const result = await Detail.getMembers(req.params.id);
-    res.json({ status: "success", data: result.rows });
+    if (result.rows.length) {
+      res.json({ status: "success", data: result.rows });
+    } else {
+      res
+        .status(404)
+        .json({ status: "Not Found", message: "Data Tidak Ditemukan" });
+    }
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
   }
